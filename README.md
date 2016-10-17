@@ -30,7 +30,7 @@
     <strong>目录说明</strong>
 </h4>
 <p>
-    oauth是实现oauth主要的代码，templates是相关的模版文件(根据自己需要修改)
+    oauth是实现oauth主要的代码，templates是相关的模版文件(根据自己情况需要修改)
 </p>
 <p>
     oauth相关设置记录在数据库中，即可以查看oauth/models.py中的OAuth_type设计。
@@ -45,13 +45,17 @@
     2、打开settings.py文件，INSTALLED_APP中添加应用 &#39;oauth&#39;
 </p>
 <p>
-    3、更新数据库
+    3、打开总的urls.py文件，添加本应用的路由设置
+    <pre>url(r'^oauth/',include('apps_project.oauth.urls')),</pre>
+</p>
+<p>
+    4、更新数据库
 </p>
 <pre>python manage.py makemigrations
 python manage.py migrate</pre>
 <p>
-    4、进入django后台管理，新增OAuth设置（包括回调地址、请求链接等等）
+    5、进入django后台管理，新增OAuth设置（包括回调地址、请求链接等等）
 </p>
 <p>
-    5、测试代码 --&gt; 调试 --&gt; 上线
+    6、测试代码 --&gt; 调试 --&gt; 上线
 </p>
