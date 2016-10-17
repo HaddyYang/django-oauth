@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}杨仕航的博客{% endblock %}
+
+{% block content %}
+	{#显示消息的页面#}
+	<div class="row">
+		<center><h4 style="line-height:300%;">{{message|safe}}</h4></center>
+	</div>
+{% endblock %}
+
+{% block extra_footer %}
+	<script type="text/javascript">
+		{#页面调整控制#}
+		{% if goto_page %}
+			$(function(){
+				window.setTimeout(function(){ 
+	                window.location = '{{goto_url}}';
+	            },{{goto_time}});
+			});
+		{% endif %}
+	</script>
+{% endblock %}

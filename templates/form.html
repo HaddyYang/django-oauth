@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}杨仕航的博客{% endblock %}
+
+{% block content %}
+    {#通用表单页面#}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3" >
+            <div id="panel_form" class="panel panel-default">
+            <div class="panel-body">
+            <h3 class="form_title">{{form_title}}</h3>
+            <p>{{form_tip|safe}}</p>
+            <form class="main_form" method='post'>
+                {%csrf_token%}
+                {% for field in form %}
+                    {# 区分是否是hidden字段 #}
+                    {% if field.is_hidden %}
+                        {{ field }}
+                    {% else %}
+                        <div class="input-group">
+                            <label class="input-group-addon" for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+                            {{ field }}
+                        </div>
+                        {# 错误提示信息 #}
+                        <p class="text-danger text-right">
+                            {{ field.errors.as_text }}
+                        </p>
+                    {%endif%}
+                {%endfor%}
+
+                <div class="text-right form_btn">
+                    <input class="btn btn-primary" id="btn_submit" type="submit" value="{{submit_name}}"/>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_footer %}
+    <style type="text/css">
+        .form_title{
+            margin-bottom: 1em;
+            padding-bottom: 0.5em;
+            border-bottom: 1px #ccc solid;
+        }
+        .main_form div,.form_btn .btn{
+            margin-top:1em;
+        }
+        #panel_form{
+            margin-top: 2em;
+            margin-bottom: 3em;
+        }
+    </style>
+{% endblock %}
