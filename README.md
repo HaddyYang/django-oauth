@@ -46,7 +46,7 @@
 </p>
 <p>
     3、打开总的urls.py文件，添加本应用的路由设置
-    <pre>url(r'^oauth/',include('apps_project.oauth.urls')),</pre>
+    <pre>url(r'^oauth/',include('oauth.urls')),</pre>
 </p>
 <p>
     4、更新数据库
