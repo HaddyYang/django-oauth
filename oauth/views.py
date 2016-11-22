@@ -118,7 +118,7 @@ def qq_check(request):
         #不存在，则跳转到绑定邮箱页面
         infos = oauth.get_user_info()    #获取用户信息
         nickname = infos['nickname']
-        return _bind_email_response(open_id, nickname, oauth.oauth_type, state)
+        return _bind_email_response(open_id, nickname, oauth.type_name, state)
 
 def sina_check(request):
     """登录之后，会跳转到这里。需要判断code和state"""
@@ -151,7 +151,7 @@ def sina_check(request):
             #获取用户资料
             infos = oauth.get_user_info()
             nickname = infos['screen_name']
-            return _bind_email_response(open_id, nickname, oauth.oauth_type, state)
+            return _bind_email_response(open_id, nickname, oauth.type_name, state)
 
         #获取到邮箱，直接绑定
         #判断是否存在对应的用户(我这里的用户名就是邮箱，根据你的实际情况参考)
@@ -195,7 +195,7 @@ def github_check(request):
             email = oauth.get_email()
         except Exception as e:
             #获取不到即跳转到绑定用户
-            return _bind_email_response(open_id, nickname, oauth.oauth_type, state)
+            return _bind_email_response(open_id, nickname, oauth.type_name, state)
 
         #获取到邮箱，直接绑定
         #判断是否存在对应的用户(我这里的用户名就是邮箱，根据你的实际情况参考)
